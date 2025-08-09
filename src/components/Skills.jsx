@@ -1,48 +1,63 @@
-// Skills.jsx
 import React from 'react';
+import { FaCode, FaServer, FaDatabase, FaTools } from 'react-icons/fa';
 
-const wordCloudSkills = [
-  { label: 'HTML', category: 'Frontend' },
-  { label: 'CSS', category: 'Frontend' },
-  { label: 'JavaScript', category: 'Frontend' },
+const skills = [
+  // 🌐 Frontend
+  { label: 'HTML5', category: 'Frontend' },
+  { label: 'CSS3', category: 'Frontend' },
+  { label: 'JavaScript(ES6+)', category: 'Frontend' },
   { label: 'React.js', category: 'Frontend' },
-  { label: 'TailwindCSS', category: 'Frontend' },
+  { label: 'Tailwind CSS', category: 'Frontend' },
+  { label: 'Bootstrap', category: 'Frontend' },
+  { label: 'Vite.js', category: 'Frontend' },
+
+  // ⚙️ Backend
   { label: 'Node.js', category: 'Backend' },
-  { label: 'Flask', category: 'Backend' },
+  { label: 'Spring Boot', category: 'Backend' },
   { label: 'Python', category: 'Backend' },
+  { label: 'Flask', category: 'Backend' },
+  { label: 'REST API', category: 'Backend' },
+  { label: 'JWT', category: 'Backend' },
+
+  // 🗄 Database
   { label: 'MySQL', category: 'Database' },
+  { label: 'AWS DynamoDB', category: 'Database' },
+  { label: 'AWS S3', category: 'Database' },
+
+  // 🛠 Tools
   { label: 'Git', category: 'Tools' },
+  { label: 'Github', category: 'Tools' },
+  { label: 'VS Code', category: 'Tools' },
+  { label: 'Vercel', category: 'Tools' },
+  { label: 'AWS ElasticBeanstalk', category: 'Tools' },
 ];
 
 const Skills = () => {
   return (
-    <section id="skills" className="min-h-[60vh] py-20 px-6 bg-gradient-to-b from-[#0a192f] via-[#112240] to-[#233554] text-white">
-      <div className="container mx-auto max-w-6xl flex flex-col md:flex-row items-start gap-12">
-        {/* Left: Text */}
-        <div className="md:w-1/2">
-          <h2 className="text-3xl md:text-4xl font-bold text-cyan-400 mb-6">Skills & Experience</h2>
-          <p className="text-gray-300 mb-4">
-            I have a strong foundation in full-stack web development, with experience in both frontend and backend technologies.
-          </p>
-          <p className="text-white mb-4">
-            On the frontend, I work with <span className="font-bold">HTML, CSS, JavaScript, and React.js</span> to build responsive websites, interactive layouts, custom features, and animations.
-          </p>
-          <p className="text-white">
-            On the backend, I have experience with <span className="font-bold">Python, Node.js, and Flask</span> along with working knowledge of <span className="font-bold">MySQL</span> for database management and <span className="font-bold">Git</span> for version control.
-          </p>
-        </div>
+    <section id="skills" className="bg-[#0d0d0d] text-white py-10 px-10">
+      <div className="container mx-auto max-w-6xl">
+        <h2 className="text-3xl font-bold mb-12 text-center">
+          Skills & <span className="text-red-500">Experience</span>
+        </h2>
 
-        {/* Right: Skill Categories */}
-        <div className="md:w-1/2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {/* Skill Columns */}
-          {['Frontend', 'Backend', 'Database', 'Tools'].map((category) => (
-            <div key={category}>
-              <h3 className="text-cyan-400 font-semibold text-lg mb-3">{category}</h3>
-              <ul className="space-y-2">
-                {wordCloudSkills
-                  .filter((skill) => skill.category === category || (category === 'Database' && skill.category === 'Database') || (category === 'Tools' && skill.category === 'Tools'))
-                  .map((skill) => (
-                    <li key={skill.label} className="text-base text-cyan-300 font-medium">{skill.label}</li>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+          {[
+            { title: 'Frontend', icon: <FaCode />, color: 'text-red-500' },
+            { title: 'Backend', icon: <FaServer />, color: 'text-red-500' },
+            { title: 'Database', icon: <FaDatabase />, color: 'text-red-500' },
+            { title: 'Tools', icon: <FaTools />, color: 'text-red-500' },
+          ].map((cat) => (
+            <div
+              key={cat.title}
+              className="bg-[#1a1a1a] p-6 rounded-lg shadow-md border border-gray-800 hover:border-red-500 transition"
+            >
+              <div className={`text-3xl mb-4 ${cat.color}`}>{cat.icon}</div>
+              <h3 className="font-semibold text-lg mb-4">{cat.title}</h3>
+              <ul className="space-y-2 text-gray-300 text-sm">
+                {skills
+                  .filter((s) => s.category === cat.title)
+                  .map((s) => (
+                    <li key={s.label}>{s.label}</li>
                   ))}
               </ul>
             </div>
