@@ -34,7 +34,7 @@ const skills = [
 
 const Skills = () => {
   return (
-    <section id="skills" className="bg-[#0d0d0d] text-white py-10 px-10">
+    <section id="skills" className="bg-[#0d0d0d] text-white py-16 px-10">
       <div className="container mx-auto max-w-6xl">
         <h2 className="text-3xl font-bold mb-12 text-center">
           Skills & <span className="text-red-500">Experience</span>
@@ -49,11 +49,16 @@ const Skills = () => {
           ].map((cat) => (
             <div
               key={cat.title}
-              className="bg-[#1a1a1a] p-6 rounded-lg shadow-md border border-gray-800 hover:border-red-500 transition"
+              className="group relative bg-[#1a1a1a]/60 backdrop-blur-md border border-gray-800 rounded-xl p-6 shadow-lg 
+                         hover:shadow-red-500/30 transition-all duration-300 hover:-translate-y-2 hover:border-red-500"
             >
-              <div className={`text-3xl mb-4 ${cat.color}`}>{cat.icon}</div>
-              <h3 className="font-semibold text-lg mb-4">{cat.title}</h3>
-              <ul className="space-y-2 text-gray-300 text-sm">
+              {/* Gradient overlay (like projects) */}
+              <div className="absolute inset-0 bg-gradient-to-r from-red-500/10 to-transparent opacity-0 
+                              group-hover:opacity-100 rounded-xl transition duration-300"></div>
+
+              <div className={`text-3xl mb-4 relative z-10 ${cat.color}`}>{cat.icon}</div>
+              <h3 className="font-semibold text-lg mb-4 relative z-10">{cat.title}</h3>
+              <ul className="space-y-2 text-gray-300 text-sm relative z-10">
                 {skills
                   .filter((s) => s.category === cat.title)
                   .map((s) => (
